@@ -16,6 +16,10 @@ public class Member {
     private String username;
     private int age;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private Team team;
+
     public Member(String username) {
         this(username, 0);
     }
@@ -31,10 +35,6 @@ public class Member {
             changeTeam(team);
         }
     }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "team_id")
-    private Team team;
 
     public void changeTeam(Team team) {
         this.team = team;
